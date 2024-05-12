@@ -1,11 +1,11 @@
-export enum powerType {
-    BATTERY = 'BATTERY',
-    SOLAR = 'SOLAR',
+export enum PowerType {
+    BATTERY, 
+    SOLAR
 }
 
 export enum TrafficLightType {
-    VEHICLE = 'VEHICLE',
-    PEDESTRIAN = 'PEDESTRIAN',
+    VEHICLE,
+    PEDESTRIAN
 }
 
 export interface TrafficLight {
@@ -13,6 +13,6 @@ export interface TrafficLight {
     name: string;
     address: string;
     direction: string;
-    power: powerType;
+    power: PowerType;
     type: TrafficLightType;
 }
