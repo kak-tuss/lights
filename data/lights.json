@@ -1,0 +1,36 @@
+[{
+    "id": "1",
+    "name": "Rina",
+    "address": "Kugel corner Sokolov, Holon",
+    "direction": "North",
+    "power": "SOLAR",
+    "type": "VEHICLE"
+},{
+    "id": "2",
+    "name": "Rina",
+    "address": "Kugel corner Sokolov, Holon",
+    "direction": "South",
+    "power": "BATTERY",
+    "type": "VEHICLE"
+},{
+    "id": "3",
+    "name": "Rina",
+    "address": "Kugel corner Sokolov, Holon",
+    "direction": "North",
+    "power": "SOLAR",
+    "type": "PEDESTRIAN"
+},{
+    "id": "4",
+    "name": "Rina",
+    "address": "Kugel corner Sokolov, Holon",
+    "direction": "SOUTH",
+    "power": "BATTERY",
+    "type": "PEDESTRIAN"
+},{
+    "id": "5",
+    "name": "Azrieli",
+    "address": "Kaplan corner Menachem Begin, Tel Aviv",
+    "direction": "West",
+    "power": "SOLAR",
+    "type": "VEHICLE"
+}]
