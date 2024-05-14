@@ -1,0 +1,59 @@
+.status-box {
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content:first baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.traffic-light-card {
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-image: linear-gradient(180deg, #f9f9f9, #e8e8e8);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.traffic-light-card h2 {
+  margin: 0;
+}
+.traffic-light-card h4 {
+  font-size: 14px;
+  margin: 0;
+}
+.traffic-light-card span, .traffic-light-card label {
+  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.traffic-light-display {
+  background-color: black;
+  width: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.traffic-light-display div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid gray;
+  background-color: black;
+}
+.traffic-light-stop.on {
+  background-color: red;
+}
+.traffic-light-wait.on {
+  background-color: yellow;
+}
+.traffic-light-walk.on {
+  background-color: green;
+}

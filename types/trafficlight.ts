@@ -1,3 +1,5 @@
+import { StateMachine, StateMachineDefinition } from "fsm-ts";
+
 export enum PowerType {
     BATTERY, 
     SOLAR
@@ -15,4 +17,5 @@ export interface TrafficLight {
     direction: string;
     power: PowerType;
     type: TrafficLightType;
+    state?: StateMachine;
 }
