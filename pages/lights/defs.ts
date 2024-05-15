@@ -45,18 +45,9 @@ export const vehicleMachineSetup: StateMachineDefinition = {
             event: 'powerOn'
         }]
     },{
-        name: 'dead',
-        transitions: [{
-            target: 'stop',
-            event: 'vehicleCrossing'
-        },{
-            target: 'off',
-            event: 'powerOff'
-        }]
-    },{
         name: 'go',
         transitions: [{
-            target: 'stop',
+            target: 'waitforstop',
             event: 'cycle'
         },{
             target: 'off',

@@ -54,6 +54,6 @@
 .traffic-light-wait.on {
   background-color: yellow;
 }
-.traffic-light-walk.on {
+.traffic-light-go.on {
   background-color: green;
 }
