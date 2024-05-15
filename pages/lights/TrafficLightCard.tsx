@@ -12,7 +12,6 @@ interface TrafficLightCardProps {
 }
 
 function isItOn(state: string): boolean {
-    console.log('is it on func', state);
     return state !== 'off' && state !== 'dead';
 }
 
@@ -28,7 +27,6 @@ function setUpMachine(trafficLight: TrafficLight): StateMachine {
 }
 
 function getDisplay(trafficLightType: TrafficLightType, trafficLightCurrentState: string): JSX.Element {
-    console.log('get display', trafficLightType, trafficLightCurrentState);
     if (trafficLightType === TrafficLightType.PEDESTRIAN) {
         return (
             <PedestrianTrafficLightDisplay trafficLightCurrentState={trafficLightCurrentState} />
@@ -56,7 +54,7 @@ export const TrafficLightCardComponent: React.FC<TrafficLightCardProps> = ({ tra
                 <h4>{trafficLight.address}            
                     <span>{trafficLight.direction}</span>
                 </h4>
-                <label htmlFor={`switch${trafficLight.id}`}>Power 
+                <label htmlFor={`switch${trafficLight.id}`}>Turn {isItOnState ? 'Off' : 'On'} 
                     <input type="checkbox" id={`switch${trafficLight.id}`} 
                         checked={isItOnState} 
                         onChange={() => {
