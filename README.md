@@ -22,8 +22,8 @@ npm link
 
 while in lights folder run
 ```
-npm link fsm-ts
 npm install
+npm link fsm-ts
 ```
 
 To run the project open lights folder and run
