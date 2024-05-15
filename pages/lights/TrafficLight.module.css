@@ -24,10 +24,26 @@
   font-size: 14px;
   margin: 0;
 }
-.traffic-light-card label input {
-  visibility: hidden;
+
+.traffic-light-card label, .traffic-light-card button {
+  text-transform: capitalize;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 13px;
+  display: inline;
+  background-color: #e8e8e8;
+  border: 1px solid #767676;
+  border-image: initial;
+  border-radius: 2px;
+  padding: 3px 6px 4px 6px;
+  float: left;
+  margin-right: 10px;
 }
-.traffic-light-card span, .traffic-light-card label {
+.traffic-light-card label input {
+  display: none;
+}
+
+.traffic-light-card span {
   display: block;
   text-transform: uppercase;
   font-size: 12px;

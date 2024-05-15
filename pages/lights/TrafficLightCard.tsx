@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { StateMachine } from 'fsm-ts';
 import { TrafficLight, TrafficLightType } from '../../types/trafficlight';
 import { pedestrianMachineSetup, vehicleMachineSetup } from './defs';
@@ -16,7 +16,6 @@ function isItOn(state: string): boolean {
 }
 
 function setUpMachine(trafficLight: TrafficLight): StateMachine {
-    const trafficLightWithState = { ...trafficLight};
     let trafficLightState: StateMachine = undefined;
     if (trafficLight.type === TrafficLightType.PEDESTRIAN) {
         trafficLightState = new StateMachine(pedestrianMachineSetup);
@@ -39,13 +38,13 @@ function getDisplay(trafficLightType: TrafficLightType, trafficLightCurrentState
 }
 
 export const TrafficLightCardComponent: React.FC<TrafficLightCardProps> = ({ trafficLight }) => {
-    const [trafficLightStateMachine, setTrafficLightStateMachine] = useState<StateMachine>(setUpMachine(trafficLight));
-    const [trafficLightState, setTrafficLightState] = useState<string>(trafficLightStateMachine.getCurrentState());
-    const [isItOnState, setIsItOnState] = useState<boolean>(isItOn(trafficLightStateMachine.getCurrentState()));
+    // const [trafficLightStateMachine, setTrafficLightStateMachine] = useState<StateMachine>(setUpMachine(trafficLight));
+    const trafficLightStateMachineRef = React.useRef<StateMachine>(setUpMachine(trafficLight));
+    const [trafficLightState, setTrafficLightState] = useState<string>(trafficLightStateMachineRef.current.getCurrentState());
 
     useEffect(() => {
-        setTrafficLightState(trafficLightStateMachine.getCurrentState());
-    }, [trafficLightStateMachine, trafficLightState, isItOnState]);
+        setTrafficLightState(trafficLightStateMachineRef.current.getCurrentState());
+    }, [trafficLightStateMachineRef.current]);
 
     return (
         <div className={styles['traffic-light-card']}>
@@ -54,32 +53,27 @@ export const TrafficLightCardComponent: React.FC<TrafficLightCardProps> = ({ tra
                 <h4>{trafficLight.address}            
                     <span>{trafficLight.direction}</span>
                 </h4>
-                <label htmlFor={`switch${trafficLight.id}`}>Turn {isItOnState ? 'Off' : 'On'} 
+                <label htmlFor={`switch${trafficLight.id}`}>Turn {isItOn(trafficLightState) ? 'Off' : 'On'} 
                     <input type="checkbox" id={`switch${trafficLight.id}`} 
-                        checked={isItOnState} 
+                        checked={isItOn(trafficLightState)} 
                         onChange={() => {
-                            let currentMachineState = trafficLightStateMachine;
-                            if (!isItOnState) {
+                            let currentMachineState = trafficLightStateMachineRef.current;
+                            if (!isItOn(trafficLightState)) {
                                 //trafficLightStateMachine.transition('powerOn');
                                 currentMachineState.transition('powerOn');
                             } else {
                                 //trafficLightStateMachine.transition('powerOff');
                                 currentMachineState.transition('powerOff');
                             }
-                            setTrafficLightStateMachine(currentMachineState);
-                            setTrafficLightState(trafficLightStateMachine.getCurrentState());
-                            setIsItOnState(isItOn(trafficLightStateMachine.getCurrentState()));
+                            setTrafficLightState(trafficLightStateMachineRef.current.getCurrentState());
                         }} />
                 </label>
                 <button
                     onClick={() => {
-                        let currentMachineState = trafficLightStateMachine;
-                        currentMachineState.transition('cycle');
-                        setTrafficLightStateMachine(currentMachineState);
-                        setTrafficLightState(trafficLightStateMachine.getCurrentState());
-                        setIsItOnState(isItOn(trafficLightStateMachine.getCurrentState()));
+                        trafficLightStateMachineRef.current.transition('cycle');
+                        setTrafficLightState(trafficLightStateMachineRef.current.getCurrentState());
                     }}
-                    disabled={!isItOnState}
+                    disabled={!isItOn(trafficLightState)}
                 >
                     Cycle
                 </button>
